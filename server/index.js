@@ -4,7 +4,9 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 dotenv.config();
-const { sequelize, User } = require('./models')
+const { sequelize } = require('./models');
+const authRoute = require('./routes/auth');
+const operationRoute = require('./routes/operation');
 
 // Set up the express app
 const app = express();
@@ -17,28 +19,8 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 // Routes
-//auth
-//operation
-app.post('/users', async (req, res) => {
-    const { email, password } = req.body;
-    try {
-        const user = await User.create({ email, password})
-        return res.json(user)
-    } catch (err) {
-        console.log(err);
-        return res.status(400).json(err)
-    }
-});
-
-app.get('/users', async (req, res) => {
-    try{
-        const users = await User.findAll();
-        return res.json(users);
-    } catch (err) {
-        console.log(err);
-        return res.status(400).json(err)
-    }
-})
+app.use('/api/v1/auth', authRoute);
+app.use('/api/v1/operation', operationRoute);
 
 // Port
 const PORT = 8800 || process.env.PORT;
