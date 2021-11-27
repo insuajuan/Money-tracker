@@ -4,16 +4,13 @@ const {verifyToken} = require('../middleware/authJwt');
 
 // /api/v1/operation
 
-// All Operations
-router.get('/', verifyToken, operationControllers.getAllOperations);
+router.route('/')
+    .get(verifyToken, operationControllers.getAllOperations)
+    .post(verifyToken, operationControllers.newOperation);
 
-// Create Operation
-router.post('/new', verifyToken, operationControllers.newOperation);
-
-// Operation
 router.route('/:op_id')
-    .get(verifyToken, operationControllers.getOperationById);
-    // .put()
-    // .delete()
+    .get(verifyToken, operationControllers.getOperationById)
+    .put(verifyToken, operationControllers.updateOperationById)
+    .delete(verifyToken, operationControllers.deleteOperationById)
 
 module.exports = router;

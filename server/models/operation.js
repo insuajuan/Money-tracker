@@ -9,18 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ User }) {
+    static associate( {User} ) {
       // define association here
-      this.belongsTo(User, { foreignKey: 'userId', as: 'user'})
-    };
-    toJSON(){
-      return { ...this.get(), id: undefined, userId: undefined }
-    };
+      this.belongsTo(User, { foreignKey: 'userId', as: 'user' })
+    }
   };
   Operation.init({
     uuid: {
       type: DataTypes.UUID,
-      primaryKey: true,
       allowNull: false,
       defaultValue: DataTypes.UUIDV4
   },
@@ -38,8 +34,8 @@ module.exports = (sequelize, DataTypes) => {
     date: {
       type: DataTypes.DATEONLY,
       allowNull: false,
-  }
-  }, {
+  },},
+   {
     sequelize,
     tableName: 'operations',
     modelName: 'Operation',

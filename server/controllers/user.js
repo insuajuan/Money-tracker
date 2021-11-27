@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const {sequelize, User} = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
@@ -16,8 +16,9 @@ module.exports.register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
         const newUser = await User.create({ email: email, password: hashedPassword });
-        const token = generateAccessToken(newUser.id)
-        return res.status(200).json({my_token: token});
+        const token = generateAccessToken(newUser.uuid)
+        console.log(token);
+        return res.status(200).json(newUser);
 
     } catch (err) {
         console.log(err)
@@ -33,7 +34,7 @@ module.exports.login = async (req, res)=>{
         const validPassword = await bcrypt.compare(req.body.password, user.password);
         !validPassword && res.status(400).json("wrong password");
 
-        const token = generateAccessToken(user.id);
+        const token = generateAccessToken(user.uuid);
         return res.status(200).json({my_token: token});
         
     } catch(err) {
