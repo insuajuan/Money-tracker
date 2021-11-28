@@ -16,8 +16,6 @@ module.exports.register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
         const newUser = await User.create({ email: email, password: hashedPassword });
-        const token = generateAccessToken(newUser.uuid)
-        console.log(token);
         return res.status(200).json(newUser);
 
     } catch (err) {
@@ -35,7 +33,7 @@ module.exports.login = async (req, res)=>{
         !validPassword && res.status(400).json("wrong password");
 
         const token = generateAccessToken(user.uuid);
-        return res.status(200).json({my_token: token});
+        return res.status(200).json({my_token: token, uuid: user.uuid});
         
     } catch(err) {
         console.log(err)

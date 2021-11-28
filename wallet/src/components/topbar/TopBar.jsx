@@ -1,8 +1,13 @@
 import './topbar.css';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { AuthContext } from "../../context/AuthContext";
 
 function Topbar() {
+
+    const { user } = useContext(AuthContext);
+
     return (
         <div className="topbarContainer d-flex justify-content-around align-items-center bg-primary">
             <div className="topbarLeft">
