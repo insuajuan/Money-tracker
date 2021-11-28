@@ -22,3 +22,13 @@ export const OperationsCall = async () => {
     console.log(err)
   }
 }
+
+export const OperationCall = async (id) => {
+  try{
+    const config = { headers: { Authorization: "Bearer " + localStorage.getItem('my_token') } }
+    const res = await axios.get(`/operation/${id}"`, config);
+    return res.data;
+  } catch (err) {
+    console.log(err)
+  } 
+}

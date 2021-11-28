@@ -20,6 +20,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/add' element={ <PrivateRoute> <OperationForm /> </PrivateRoute>} />
         <Route path='/edit' element={ <PrivateRoute> <OperationForm /> </PrivateRoute>} />
+        <Route path='/edit/:opid' element={ <PrivateRoute> <OperationForm /> </PrivateRoute>} />
       </Routes>
     </Router>
   );

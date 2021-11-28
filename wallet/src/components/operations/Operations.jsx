@@ -1,15 +1,15 @@
 import './operations.css';
-import { useContext, useState, useEffect } from 'react';
-import { AuthContext } from "../../context/AuthContext";
+import { useState, useEffect } from 'react';
 import { OperationsCall } from "../../apiCalls";
 import OperationButton from '../operationButton/OperationButton';
-import Operation from '../operation/Operation';
+import { useNavigate } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 function Operations() {
 
     let [operations, setOperations] = useState([]);
-    // const { user } = useContext(AuthContext);
+    const navigate = useNavigate ();
 
     const fetchOperations = async () => {
         setOperations(await OperationsCall())
@@ -19,12 +19,26 @@ function Operations() {
         fetchOperations()
     }, []);
 
+    const handleClick = (e) => {
+        e.preventDefault();
+        const opId = e.target.id
+        navigate(`/edit/${opId}`)
+    }
+
+
     return (
         <div>
             <OperationButton />
-            {operations.map((op) => (
-                <Operation key={op.uuid} operation={op}/>
-            ))}
+                {operations.map((op) => (
+                    <div key={op.uuid} className="operationsContainer mt-2" >
+                        <div className="operation d-flex container-fluid justify-content-between" id={op.uuid} onClick={handleClick}>
+                            <h3 id={op.uuid} onClick={handleClick}>{op.date}</h3>
+                            <h3 id={op.uuid} onClick={handleClick}>{op.description}</h3>
+                            <h3 id={op.uuid} onClick={handleClick}>${op.amount}</h3>
+                            <button><DeleteIcon/></button>
+                        </div>
+                    </div>
+                ))}
         </div>
 
         
