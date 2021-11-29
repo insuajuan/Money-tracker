@@ -35,10 +35,25 @@ export const OperationCall = async (id) => {
 
 export const OperationEdit = async (id, body) => {
   try{
-    const config = { headers: { Authorization: "Bearer " + localStorage.getItem('my_token') }, body: JSON.stringify({body}) }
-    const res = await axios.put(`/operation/${id}`, config);
+    const config = { headers: { Authorization: "Bearer " + localStorage.getItem('my_token'), }, data: {body} }
+    console.log(config)
+    const res = await axios.patch(`/operation/${id}`, config);
+    console.log(res.config)
     return res.data;
   } catch (err) {
     console.log(err)
   } 
 }
+
+export const OperationAdd = async (body) => {
+  try{
+    const config = { headers: { Authorization: "Bearer " + localStorage.getItem('my_token'), }, data: {body} }
+    console.log(config)
+    const res = await axios.post(`/operation`, config);
+    console.log(res.config)
+    return res.data;
+  } catch (err) {
+    console.log(err)
+  } 
+}
+

@@ -1,39 +1,21 @@
 import './operationbutton.css';
+import { useNavigate } from 'react-router-dom';
 
-function operationButton() {
+function OperationButton() {
+
+    const navigate = useNavigate();
 
     const handleClick = (e) => {
-        const button = 'material-button-toggle'
-        alert(button)
-        // button.toggleClass('open');
-        // button.toggleClass('scale-on');
+        navigate("/add")
     }
 
     return (
-        <div className="container">
-            <div className="row">
-            <div className="col-md-4 col-md-offset-4">
-                <div className="material-button-anim">
-                    <ul className="list-inline" id="options">
-                        <li className="option">
-                        <button className="material-button option1" type="button">
-                            <span className="fa fa-phone" aria-hidden="true"></span>
-                        </button>
-                        </li>
-                        <li className="option">
-                        <button className="material-button option2" type="button">
-                            <span className="fa fa-envelope-o" aria-hidden="true"></span>
-                        </button>
-                        </li>
-                    </ul>
-                    <button className="material-button material-button-toggle" type="button" onClick={handleClick}>
-                        <span className="fa fa-plus" aria-hidden="true"></span>
-                    </button>
-                </div>
-            </div>
-            </div>
-        </div>        
+        <div className="container-fluid d-flex align-middle m-5">
+            <button className="btn btn-primary align-middle" type="button" onClick={handleClick}>
+                +
+            </button>
+        </div>    
     )
 }
 
-export default operationButton
+export default OperationButton

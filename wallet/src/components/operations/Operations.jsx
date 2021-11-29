@@ -25,17 +25,22 @@ function Operations() {
         navigate(`/edit/?op=${opId}`)
     }
 
+    const handleDelete = (e) => {
+        e.preventDefault();
+        alert('delete pending')
+    }
+
 
     return (
         <div>
             <OperationButton />
                 {operations.map((op) => (
                     <div key={op.uuid} className="operationsContainer mt-2" >
-                        <div className="operation d-flex container-fluid justify-content-between" id={op.uuid} onClick={handleClick}>
+                        <div className="operation d-flex container-fluid justify-content-between align-items-center" id={op.uuid} onClick={handleClick}>
                             <h3 id={op.uuid} onClick={handleClick}>{op.date}</h3>
                             <h3 id={op.uuid} onClick={handleClick}>{op.description}</h3>
                             <h3 id={op.uuid} onClick={handleClick}>${op.amount}</h3>
-                            <button><DeleteIcon/></button>
+                            <button id={op.uuid} onClick={handleDelete} type="button" className="btn"><DeleteIcon/></button>
                         </div>
                     </div>
                 ))}

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes,Route, Navigate } from "react-router-dom";
 import Login from "./views/login/Login";
-import OperationForm from "./views/form/OperationForm";
+import Edit from "./views/form/Edit"
+import Add from "./views/form/Add"
 import Register from "./views/register/Register";
 import Home from "./views/home/Home";
 import { useContext  } from "react";
@@ -18,9 +19,9 @@ function App() {
         <Route path='/' element={ <PrivateRoute> <Home /> </PrivateRoute>} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/add' element={ <PrivateRoute> <OperationForm /> </PrivateRoute>} />
-        <Route path='/edit' element={ <PrivateRoute> <OperationForm /> </PrivateRoute>} />
-        <Route path='/edit/:opid' element={ <PrivateRoute> <OperationForm /> </PrivateRoute>} />
+        <Route path='/add' form="add" element={ <PrivateRoute> <Add /> </PrivateRoute>} />
+        <Route path='/edit' form="edit" element={ <PrivateRoute> <Edit /> </PrivateRoute>} />
+        <Route path='/edit/:opid' element={ <PrivateRoute> <Edit /> </PrivateRoute>} />
       </Routes>
     </Router>
   );

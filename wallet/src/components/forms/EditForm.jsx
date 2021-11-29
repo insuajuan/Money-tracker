@@ -1,9 +1,11 @@
 import { OperationCall, OperationEdit } from "../../apiCalls";
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 
 
-function EditForm() {
+function EditForm(props) {
+    
+    const navigate = useNavigate ();
 
     const [searchParams] = useSearchParams();
     const params = Object.fromEntries([...searchParams]);
@@ -19,7 +21,7 @@ function EditForm() {
         fetchOperation()
     }, [] );
 
-
+ 
     const [data, setData] = useState({
         date: '',
         description: '',
@@ -37,20 +39,19 @@ function EditForm() {
         e.preventDefault();
         console.log(id)
         const body = {
-            date: data.date,
-            description: data.description,
-            amount: data.amount,
-            expense: true
+            "date": "01/29/2020",
+            "description": data.description,
+            "amount": data.amount,
+            "expense": "true"
         };
         OperationEdit(id, body)
-        console.log(data.date)
-
+        navigate("/")
     }
 
     return (
         <div className="formContainer m-4">
             <form className="d-flex-row" onSubmit={handleSubmit}>
-            <div className="row align-items-center">
+            <div className="row align-items-center p-2">
                 <div className="col-md-3">
                     <label className="col-form-label">Date</label>
                 </div>
@@ -62,10 +63,11 @@ function EditForm() {
                     name="date" 
                     placeholder={operation.date}
                     onChange={handleChange}
+                    required
                     />
                 </div>
             </div>            
-            <div className="row align-items-center">
+            <div className="row align-items-center p-2">
                 <div className="col-md-3">
                     <label className="col-form-label">Description</label>
                 </div>
@@ -76,10 +78,11 @@ function EditForm() {
                     name="description"
                     placeholder={operation.description}
                     onChange={handleChange}
+                    required
                     />
                 </div>
             </div>            
-            <div className="row align-items-center">
+            <div className="row align-items-center p-2">
                 <div className="col-md-3">
                     <label className="col-form-label">Amount $</label>
                 </div>
@@ -91,10 +94,11 @@ function EditForm() {
                     name="amount"
                     placeholder={operation.amount}
                     onChange={handleChange}
+                    required
                     />
                 </div>
             </div>           
-            <div className="col-md-3">
+            <div className="col-md-3 ps-2 mt-5">
                 <button className="btn btn-primary" type="submit">Send</button>
             </div> 
             </form>

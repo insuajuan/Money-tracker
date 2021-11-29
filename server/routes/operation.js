@@ -10,7 +10,7 @@ router.route('/')
 
 router.route('/:op_id')
     .get(verifyToken, operationControllers.getOperationById)
-    .put(verifyToken, operationControllers.updateOperationById)
+    .patch(verifyToken, operationControllers.updateOperationById)
     .delete(verifyToken, operationControllers.deleteOperationById)
 
 module.exports = router;

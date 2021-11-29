@@ -17,4 +17,9 @@
     color: whitesmoke;
     text-decoration: none;
     cursor: pointer;
+    
+}
+
+a:hover {
+    color: whitesmoke;
 }
