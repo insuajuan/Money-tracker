@@ -22,7 +22,7 @@ function Operations() {
     const handleClick = (e) => {
         e.preventDefault();
         const opId = e.target.id
-        navigate(`/edit/${opId}`)
+        navigate(`/edit/?op=${opId}`)
     }
 
 

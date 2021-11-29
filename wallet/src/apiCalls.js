@@ -26,7 +26,17 @@ export const OperationsCall = async () => {
 export const OperationCall = async (id) => {
   try{
     const config = { headers: { Authorization: "Bearer " + localStorage.getItem('my_token') } }
-    const res = await axios.get(`/operation/${id}"`, config);
+    const res = await axios.get(`/operation/${id}`, config);
+    return res.data;
+  } catch (err) {
+    console.log(err)
+  } 
+}
+
+export const OperationEdit = async (id, body) => {
+  try{
+    const config = { headers: { Authorization: "Bearer " + localStorage.getItem('my_token') }, body: JSON.stringify({body}) }
+    const res = await axios.put(`/operation/${id}`, config);
     return res.data;
   } catch (err) {
     console.log(err)

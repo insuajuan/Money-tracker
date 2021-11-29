@@ -5,8 +5,16 @@
 }
 
 .logo{
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
     color: whitesmoke;
+    cursor: pointer;
+}
+
+.walletOption a{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: whitesmoke;
+    text-decoration: none;
     cursor: pointer;
 }

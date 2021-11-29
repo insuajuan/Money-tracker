@@ -1,6 +1,6 @@
 import Topbar from "../../components/topbar/TopBar";
 import Middlebar from "../../components/middlebar/Middlebar";
-import AddForm from "../../components/forms/AddForm";
+import EditForm from "../../components/forms/EditForm";
 
 
 function EditOperation() {
@@ -8,7 +8,7 @@ function EditOperation() {
         <div>
             <Topbar/>
             <Middlebar/>
-            <AddForm/>
+            <EditForm/>
         </div>
     )
 }

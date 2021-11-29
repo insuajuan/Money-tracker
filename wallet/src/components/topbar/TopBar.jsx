@@ -17,7 +17,7 @@ function Topbar() {
             </div>
             <div className="topbarCenter">
                 <div className="walletOption d-flex">
-                    <h3>Wallet</h3>
+                    <a href="/">Wallet</a>
                     <ArrowDropDownIcon />
                 </div>
             </div>
