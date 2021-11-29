@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
 const { sequelize } = require('./models');
@@ -15,6 +16,7 @@ app.set('views', path.join(__dirname, 'views'));
 // Middleware
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 
